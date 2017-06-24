@@ -2,6 +2,7 @@ const express = require('express')
 const app = express();
 const bodyParser = require('body-parser');
 const userAPI = require('./user/userApi');
+const productAPI = require('./user/productAPI');
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -18,7 +19,7 @@ app.get('/', function (req, res) {
 })
 
 userAPI(app);
-
+productAPI(app);
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
