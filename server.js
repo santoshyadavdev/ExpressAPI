@@ -4,12 +4,15 @@ const bodyParser = require('body-parser');
 const userAPI = require('./user/userApi');
 const productAPI = require('./user/productAPI');
 const employeeAPI = require('./user/employeeApi');
+const myLogger = require('./middleware/myLogger');
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
+
+app.use(myLogger);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); 
