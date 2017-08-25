@@ -5,6 +5,7 @@ const userAPI = require('./user/userApi');
 const productAPI = require('./user/productAPI');
 const employeeAPI = require('./user/employeeApi');
 const myLogger = require('./middleware/myLogger');
+var fs = require('fs');
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -19,8 +20,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.get('/', function (req, res) {
-  res.send('Hello World!')
-})
+ 
+  var sample = fs.readFileSync('sample.txt','utf8');
+  fs.writeFileSync('output.txt',sample);
+  res.send(sample);
+});
 
 userAPI(app);
 productAPI(app);
